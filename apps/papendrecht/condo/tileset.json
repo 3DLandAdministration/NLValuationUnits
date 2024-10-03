@@ -1,0 +1,83 @@
+{
+	"asset" : {
+		"version" : "0.0"
+	},
+	"properties" : {
+		"FloorNumber" : {},
+		"_relationships{}.Sira" : {},
+		"_relationships{}.CondominiumID" : {},
+		"_relationships{}.HouseNumber" : {},
+		"_relationships{}.BuildingID" : {},
+		"_relationships{}.FloorNumber" : {},
+		"_relationships{}.rdf" : {},
+		"_relationships{}.gml_parent_id" : {},
+		"_relationships{}.gml_parent_property" : {},
+		"_relationships{}.gml_id" : {},
+		"_relationships{}.geom" : {},
+		"_relationships{}.identificatie" : {},
+		"_relationships{}.rdf_seealso" : {},
+		"_relationships{}.oppervlakte" : {},
+		"_relationships{}.status" : {},
+		"_relationships{}.gebruiksdoel" : {},
+		"_relationships{}.openbare_ruimte" : {},
+		"_relationships{}.huisnummer" : {},
+		"_relationships{}.huisletter" : {},
+		"_relationships{}.toevoeging" : {},
+		"_relationships{}.postcode" : {},
+		"_relationships{}.woonplaats" : {},
+		"_relationships{}.bouwjaar" : {},
+		"_relationships{}.pandidentificatie" : {},
+		"_relationships{}.pandstatus" : {},
+		"_relationships{}.fuuid" : {},
+		"_relationships{}.de9im" : {},
+		"_relationships{}.pass{}" : {},
+		"_relationships{}.card_point" : {},
+		"_relationships{}.card_line" : {},
+		"_relationships{}.card_area" : {},
+		"_related_suppliers" : {
+			"minimum" : 1,
+			"maximum" : 1
+		},
+		"rdf" : {},
+		"gml_parent_id" : {},
+		"gml_parent_property" : {},
+		"gml_id" : {},
+		"geom" : {},
+		"identificatie" : {},
+		"rdf_seealso" : {},
+		"oppervlakte" : {},
+		"status" : {},
+		"gebruiksdoel" : {},
+		"openbare_ruimte" : {},
+		"huisnummer" : {},
+		"huisletter" : {},
+		"toevoeging" : {},
+		"postcode" : {},
+		"woonplaats" : {},
+		"bouwjaar" : {},
+		"pandidentificatie" : {},
+		"pandstatus" : {},
+		"fuuid" : {},
+		"de9im" : {},
+		"pass{}" : {},
+		"card_point" : {},
+		"card_line" : {},
+		"card_area" : {},
+		"_element_index" : {},
+		"adresJoin" : {},
+		"uuid" : {}
+	},
+	"geometricError" : 16.755676906264853,
+	"root" : {
+		"boundingVolume" : {
+			"box" : [ 3936487.942683821, 323899.1655190638, 4991202.930868625, 117.28130454197526, 0, 0, 0, 117.31332841236144, 0, 0, 0, 106.82937521487474 ]
+		},
+		"refine" : "ADD",
+		"content" : {
+			"boundingVolume" : {
+				"box" : [ 3936487.942683821, 323899.1655190638, 4991202.930868625, 117.28130454197526, 0, 0, 0, 117.31332841236144, 0, 0, 0, 106.82937521487474 ]
+			},
+			"url" : "data/data0.b3dm"
+		}
+	}
+}

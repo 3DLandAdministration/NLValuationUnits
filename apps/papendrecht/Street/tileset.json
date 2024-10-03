@@ -1,0 +1,201 @@
+{
+	"asset" : {
+		"version" : "0.0"
+	},
+	"properties" : {
+		"StreetName" : {},
+		"1" : {
+			"minimum" : 287,
+			"maximum" : 1196
+		},
+		"Adres" : {},
+		"Postcode" : {},
+		"Plaatsnaam" : {},
+		"Bouwjaar:" : {
+			"minimum" : 1971,
+			"maximum" : 1974
+		},
+		"Gebruiksdoel:" : {},
+		"Peildatum" : {},
+		"WOZ-waarde-condo" : {},
+		"Identificatie" : {},
+		"Oppervlakte" : {
+			"minimum" : 100,
+			"maximum" : 118
+		},
+		"FloorNumber" : {},
+		"_relationships{}.Sira" : {},
+		"_relationships{}.CondominiumID" : {},
+		"_relationships{}.HouseNumber" : {},
+		"_relationships{}.BuildingID" : {},
+		"_relationships{}.FloorNumber" : {},
+		"_relationships{}.rdf" : {},
+		"_relationships{}.gml_parent_id" : {},
+		"_relationships{}.gml_parent_property" : {},
+		"_relationships{}.gml_id" : {},
+		"_relationships{}.geom" : {},
+		"_relationships{}.identificatie" : {},
+		"_relationships{}.rdf_seealso" : {},
+		"_relationships{}.oppervlakte" : {},
+		"_relationships{}.status" : {},
+		"_relationships{}.gebruiksdoel" : {},
+		"_relationships{}.openbare_ruimte" : {},
+		"_relationships{}.huisnummer" : {},
+		"_relationships{}.huisletter" : {},
+		"_relationships{}.toevoeging" : {},
+		"_relationships{}.postcode" : {},
+		"_relationships{}.woonplaats" : {},
+		"_relationships{}.bouwjaar" : {},
+		"_relationships{}.pandidentificatie" : {},
+		"_relationships{}.pandstatus" : {},
+		"_relationships{}.fuuid" : {},
+		"_relationships{}.de9im" : {},
+		"_relationships{}.pass{}" : {},
+		"_relationships{}.card_point" : {},
+		"_relationships{}.card_line" : {},
+		"_relationships{}.card_area" : {},
+		"_related_suppliers" : {
+			"minimum" : 1,
+			"maximum" : 1
+		},
+		"rdf" : {},
+		"gml_parent_id" : {},
+		"gml_parent_property" : {},
+		"gml_id" : {},
+		"geom" : {},
+		"identificatie" : {},
+		"rdf_seealso" : {},
+		"oppervlakte" : {},
+		"status" : {},
+		"gebruiksdoel" : {},
+		"openbare_ruimte" : {},
+		"huisnummer" : {},
+		"huisletter" : {},
+		"toevoeging" : {},
+		"postcode" : {},
+		"woonplaats" : {},
+		"bouwjaar" : {},
+		"pandidentificatie" : {},
+		"pandstatus" : {},
+		"fuuid" : {},
+		"de9im" : {},
+		"pass{}" : {},
+		"card_point" : {},
+		"card_line" : {},
+		"card_area" : {},
+		"_element_index" : {},
+		"adresJoin" : {},
+		"fid" : {},
+		"_list" : {},
+		"mergewith" : {},
+		"gid" : {
+			"minimum" : 2669618,
+			"maximum" : 2669618
+		},
+		"pand_deel_id" : {
+			"minimum" : 0,
+			"maximum" : 0
+		},
+		"val3dity_codes" : {},
+		"lod11_replace" : {},
+		"tile_id" : {},
+		"ogc_fid" : {
+			"minimum" : 390,
+			"maximum" : 390
+		},
+		"oppervlakte_min" : {
+			"minimum" : 118,
+			"maximum" : 118
+		},
+		"oppervlakte_max" : {
+			"minimum" : 118,
+			"maximum" : 118
+		},
+		"aantal_verblijfsobjecten" : {
+			"minimum" : 1,
+			"maximum" : 1
+		},
+		"WOZ-waarde-condo.sum" : {
+			"minimum" : 250000,
+			"maximum" : 3075000
+		},
+		"WOZ-waarde-condo.mean" : {
+			"minimum" : 155188.679245283,
+			"maximum" : 249375
+		},
+		"Oppervlakte.sum" : {},
+		"WOZ-waarde-persqm-bldg" : {},
+		"WOZ-waarde-mean-bldg" : {},
+		"WOZ-waarde-mean-bldg.sum" : {
+			"minimum" : 1995000,
+			"maximum" : 24674998
+		},
+		"WOZ-waarde-mean-street" : {
+			"minimum" : 155188.66666666666,
+			"maximum" : 249375
+		},
+		"WOZ-waarde-persqm-street" : {
+			"minimum" : 1558.4213836477988,
+			"maximum" : 2075.875
+		},
+		"Oppervlakte-bldg-sum" : {
+			"minimum" : 118,
+			"maximum" : 2035
+		},
+		"bldtype" : {},
+		"WOZ-waarde-floor-sum" : {
+			"minimum" : 250000,
+			"maximum" : 325000
+		},
+		"WOZ-waarde-floor-mean" : {
+			"minimum" : 162500,
+			"maximum" : 250000
+		},
+		"Oppervlakte-floor-sum" : {
+			"minimum" : 118,
+			"maximum" : 215
+		},
+		"WOZ-waarde-persqm-floor" : {},
+		"bouwjaar.min" : {
+			"minimum" : 1971,
+			"maximum" : 1974
+		},
+		"bouwjaar.max" : {
+			"minimum" : 1971,
+			"maximum" : 1974
+		},
+		"Floor-id" : {},
+		"Oppervlakte.mean-floor" : {
+			"minimum" : 107.5,
+			"maximum" : 118
+		},
+		"Peiljaar" : {},
+		"Annual_increase_condo" : {},
+		"Annual_increase_floor" : {
+			"minimum" : 4.96,
+			"maximum" : 13.64
+		},
+		"Annual_increase_bldg" : {
+			"minimum" : 2.17,
+			"maximum" : 13.64
+		},
+		"Annual_increase_street" : {
+			"minimum" : 3.38,
+			"maximum" : 11.51
+		},
+		"Annual_increase" : {}
+	},
+	"geometricError" : 117.31332841236144,
+	"root" : {
+		"boundingVolume" : {
+			"box" : [ 3936487.942683821, 323871.7770851572, 4991202.930868625, 117.28130454197526, 0, 0, 0, 172.09019622550113, 0, 0, 0, 106.82937521487474 ]
+		},
+		"refine" : "ADD",
+		"content" : {
+			"boundingVolume" : {
+				"box" : [ 3936487.942683821, 323871.7770851572, 4991202.930868625, 117.28130454197526, 0, 0, 0, 172.09019622550113, 0, 0, 0, 106.82937521487474 ]
+			},
+			"url" : "data/data0.b3dm"
+		}
+	}
+}

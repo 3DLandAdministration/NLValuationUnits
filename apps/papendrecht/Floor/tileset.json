@@ -1,0 +1,60 @@
+{
+	"asset" : {
+		"version" : "0.0"
+	},
+	"properties" : {
+		"FloorNumber" : {},
+		"MinFloor" : {},
+		"MaxFloor" : {},
+		"gml_parent_id" : {},
+		"gml_parent_property" : {},
+		"gml_id" : {},
+		"geom" : {},
+		"identificatie" : {},
+		"rdf_seealso" : {},
+		"bouwjaar" : {},
+		"status" : {},
+		"gebruiksdoel" : {},
+		"oppervlakte_min" : {},
+		"oppervlakte_max" : {},
+		"aantal_verblijfsobjecten" : {},
+		"fuuid" : {},
+		"bldtype" : {},
+		"_match_id" : {
+			"minimum" : 0,
+			"maximum" : 7
+		},
+		"pandidentificatie" : {},
+		"rdf" : {},
+		"oppervlakte" : {},
+		"openbare_ruimte" : {},
+		"huisnummer" : {},
+		"huisletter" : {},
+		"toevoeging" : {},
+		"postcode" : {},
+		"woonplaats" : {},
+		"pandstatus" : {},
+		"de9im" : {},
+		"pass{}" : {},
+		"card_point" : {},
+		"card_line" : {},
+		"card_area" : {},
+		"_element_index" : {},
+		"adresJoin" : {},
+		"uuid" : {},
+		"Floor-id" : {}
+	},
+	"geometricError" : 21.845220014452934,
+	"root" : {
+		"boundingVolume" : {
+			"box" : [ 3936487.931597529, 323899.1511876646, 4991202.945466401, 117.40239737322554, 0, 0, 0, 117.43617938755779, 0, 0, 0, 106.94071791414171 ]
+		},
+		"refine" : "ADD",
+		"content" : {
+			"boundingVolume" : {
+				"box" : [ 3936487.931597529, 323899.1511876646, 4991202.945466401, 117.40239737322554, 0, 0, 0, 117.43617938755779, 0, 0, 0, 106.94071791414171 ]
+			},
+			"url" : "data/data0.b3dm"
+		}
+	}
+}

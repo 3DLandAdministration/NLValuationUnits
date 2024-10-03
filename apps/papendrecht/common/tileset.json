@@ -1,0 +1,52 @@
+{
+	"asset" : {
+		"version" : "0.0"
+	},
+	"properties" : {
+		"MaxFloor" : {},
+		"MinFloor" : {},
+		"gml_parent_id" : {},
+		"gml_parent_property" : {},
+		"gml_id" : {},
+		"geom" : {},
+		"identificatie" : {},
+		"rdf_seealso" : {},
+		"bouwjaar" : {
+			"minimum" : 1971,
+			"maximum" : 1971
+		},
+		"status" : {},
+		"gebruiksdoel" : {},
+		"oppervlakte_min" : {
+			"minimum" : 85,
+			"maximum" : 100
+		},
+		"oppervlakte_max" : {
+			"minimum" : 100,
+			"maximum" : 125
+		},
+		"aantal_verblijfsobjecten" : {
+			"minimum" : 20,
+			"maximum" : 20
+		},
+		"fuuid" : {},
+		"bldtype" : {},
+		"_match_id" : {
+			"minimum" : 0,
+			"maximum" : 7
+		}
+	},
+	"geometricError" : 28.384478202089667,
+	"root" : {
+		"boundingVolume" : {
+			"box" : [ 3936484.3812967725, 323898.3650657764, 4991197.94944615, 113.77545448904857, 0, 0, 0, 116.14970503730001, 0, 0, 0, 101.38274594396353 ]
+		},
+		"refine" : "ADD",
+		"content" : {
+			"boundingVolume" : {
+				"box" : [ 3936484.3812967725, 323898.3650657764, 4991197.94944615, 113.77545448904857, 0, 0, 0, 116.14970503730001, 0, 0, 0, 101.38274594396353 ]
+			},
+			"url" : "data/data0.b3dm"
+		}
+	}
+}

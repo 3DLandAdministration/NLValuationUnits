@@ -1,0 +1,81 @@
+{
+	"asset" : {
+		"version" : "0.0"
+	},
+	"properties" : {
+		"fid" : {},
+		"_list" : {},
+		"_element_index" : {
+			"minimum" : 0,
+			"maximum" : 0
+		},
+		"mergewith" : {},
+		"gid" : {
+			"minimum" : 2669432,
+			"maximum" : 2669618
+		},
+		"pand_deel_id" : {
+			"minimum" : 0,
+			"maximum" : 0
+		},
+		"val3dity_codes" : {},
+		"lod11_replace" : {},
+		"tile_id" : {},
+		"ogc_fid" : {
+			"minimum" : 320,
+			"maximum" : 390
+		},
+		"gml_parent_id" : {},
+		"gml_parent_property" : {},
+		"gml_id" : {},
+		"geom" : {},
+		"identificatie" : {},
+		"rdf_seealso" : {},
+		"bouwjaar" : {
+			"minimum" : 1971,
+			"maximum" : 1974
+		},
+		"status" : {},
+		"gebruiksdoel" : {},
+		"oppervlakte_min" : {
+			"minimum" : 85,
+			"maximum" : 137
+		},
+		"oppervlakte_max" : {
+			"minimum" : 100,
+			"maximum" : 137
+		},
+		"aantal_verblijfsobjecten" : {
+			"minimum" : 1,
+			"maximum" : 20
+		},
+		"fuuid" : {},
+		"bldtype" : {},
+		"_relationships{}.de9im" : {},
+		"_relationships{}.pass{}" : {},
+		"_related_suppliers" : {
+			"minimum" : 1,
+			"maximum" : 1
+		},
+		"MaxFloor" : {},
+		"MinFloor" : {},
+		"_match_id" : {
+			"minimum" : 0,
+			"maximum" : 7
+		},
+		"uuid" : {}
+	},
+	"geometricError" : 37.85346068255603,
+	"root" : {
+		"boundingVolume" : {
+			"box" : [ 3936487.0570045067, 323871.8001031799, 4991201.829073722, 119.12686995742843, 0, 0, 0, 172.13623227068456, 0, 0, 0, 109.14200108591467 ]
+		},
+		"refine" : "ADD",
+		"content" : {
+			"boundingVolume" : {
+				"box" : [ 3936487.0570045067, 323871.8001031799, 4991201.829073722, 119.12686995742843, 0, 0, 0, 172.13623227068456, 0, 0, 0, 109.14200108591467 ]
+			},
+			"url" : "data/data0.b3dm"
+		}
+	}
+}

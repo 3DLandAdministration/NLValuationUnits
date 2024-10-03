@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+ 
+ <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="description" content="3D Valuation Model">
+    <meta name="cesium-sandcastle-labels" content="Showcases, DataSources"><title>3D Valuation Information</title>
+ 
+
+  <script type="text/javascript" src="Sandcastle-header.js"></script> 
+  
+
+  <script src="../Build/Cesium/Cesium.js"></script>
+  
+	
+</head>
+<body class="sandcastle-loading" data-sandcastle-bucket="bucket-requirejs.html">
+
+<style>
+ @import url(bucket.css);
+.cesium-viewer-dbSearchContainer .cesium-dbSearch-input {
+  border: 1px solid #444444;
+  margin: 0;
+  padding: 0 32px 0 0;
+  color: white;
+  vertical-align: middle;
+  width: 0;
+  height: 32px;
+}
+.cesium-viewer-dbSearchContainer:hover .cesium-dbSearch-input {
+  border-color: #aaeeff;
+}
+.cesium-viewer-dbSearchContainer .cesium-dbSearch-input:focus {
+  border-color: #eeaa44;
+  outline-color: invert;
+  outline-style: none;
+  outline-width: medium;
+}
+.cesium-viewer-dbSearchContainer:hover .cesium-dbSearch-input, .cesium-viewer-dbSearchContainer .cesium-dbSearch-input:focus, .cesium-viewer-dbSearchContainer .cesium-dbSearch-input-wide {
+  padding-left: 4px;
+  width: 250px;
+}
+.cesium-dbSearch-searchButton {
+  background-color: #303336;
+  position: absolute;
+  cursor: pointer;
+  width: 32px;
+  top: 1px;
+  right: 1px;
+  height: 30px;
+  vertical-align: middle;
+  fill: #edffff;
+}
+.cesium-dbSearch-searchButton:hover {
+  background-color: #4488bb;
+}
+
+table {
+  border-collapse: collapse;
+}
+table, td, th {
+  border: 1px solid black;
+}
+.popup {
+  border: 1px solid black;
+  padding: 5px;
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  color: black;
+  font-size: 13px;
+}
+
+
+.btn-group button:not(:last-child) {
+  border-bottom: medium none;
+}
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+
+
+.toolbarSelect	select {
+  position: absolute;
+border: 1px solid black;
+word-break: break-all;
+
+}
+
+
+#toolbars {
+display: table;
+  position: relative;
+  left: 0px;
+  padding: 1px;
+  width: 96%;
+ background: rgba(42, 42, 42, 0.8);
+ border: 1px solid black;
+
+} 
+
+#toolbarVal {
+  position: relative;
+    top: 2px;
+  left: 2px;
+  width: 48%;
+    padding: 1px;
+ } 
+
+
+#toolbarUnit {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 48%;
+  padding: 1px;
+}
+
+.toolbars button {
+left: 0px;
+  cursor: pointer;
+  display: block;
+   text-align: justify;
+   vertical-align: 50%;
+ }
+ 
+.toolbarVal button {
+width: 80%;
+}
+
+.toolbarUnit button {
+width: 90%;
+}
+
+
+    #toolbar {
+	
+	  position: fixed;
+	  top: 0px;
+	  left: 0px;
+
+	  width: 250px;
+	  height: 170px;
+        background: rgba(42, 42, 42, 0.8);
+      	  padding: 0.5%;
+        border-radius: 0.5%;
+		display: block;
+    }
+
+	
+select.cesium-button {
+word-break: break-all;
+
+}
+ 
+
+</style>
+
+<div id="cesiumContainer" class="fullSize"></div>
+<div id="loadingOverlay"><h1>Loading...</h1></div>
+
+<div id="toolbar">
+        
+        <div id="SelectVal" class="SelectVal">
+             <div
+                <p style="text-align:center; background:  rgba(88, 88, 88, 0.8); width: 100%; padding-left: 1px;font-family:sans-serif;font-size:10pt;">Select Valuation Year</p>
+				</div>
+        </div>
+		
+        <div id="SelectUnit" class="SelectUnit">
+             <div
+                <p style="text-align:center; background:  rgba(88, 88, 88, 0.8); width: 100%; padding: 1px;font-family:sans-serif;font-size:10pt;">Select Valuation Unit and Groups</p>
+				</div>
+				     </div>
+				
+	<div class="toolbar-left">
+	 <button class="cesium-button" type="checkbox" id="showCheckbox1"/>
+	 <label>
+		<input type="checkbox" id="showCheckbox"  />
+		Show Common Places in Building
+		</label>
+	 </div>
+</div>
+
+<script id="cesium_sandcastle_script">
+
+ 
+ Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0NjMyNTQ1YS1hNjE3LTQ2ZjItOGU2My1lMDM0Y2JkNWMwYzQiLCJpZCI6ODA1MSwiaWF0IjoxNjAxMzQwNjc1fQ.75qy84lpW7uQ-IIIPRYFRk__hoXxqQ2hsq5MB3Bn-80';
+
+  function startup(Cesium) {
+  
+
+
+  	var trueFalse= ["true", "false"];
+	var showText= ["true", "true"];
+	var hideText= ["true", "false"];
+  
+ var conditionsMatrixBuilding=[];
+var conditionsMatrixCondo=[];
+var conditionsMatrixStreet=[];
+var conditionsMatrixFloor=[];
+
+    
+function setStyleByBtn () {
+
+conditionsMatrixBuilding=[];
+conditionsMatrixCondo=[];
+conditionsMatrixStreet=[];
+conditionsMatrixFloor=[];
+
+if (Id==='Building') {
+
+	 conditionsMatrixBuilding=[showText];
+     conditionsMatrixCondo=[hideText];
+	 conditionsMatrixStreet=[hideText];
+	 conditionsMatrixFloor=[hideText];
+}
+
+if (Id==='Condominium') {
+
+	 conditionsMatrixBuilding=[hideText];
+     conditionsMatrixCondo=[showText];
+    conditionsMatrixStreet=[hideText];
+	 conditionsMatrixFloor=[hideText];
+}
+
+if (Id==='Street') {
+      conditionsMatrixStreet=[showText];
+	 conditionsMatrixBuilding=[hideText];
+     conditionsMatrixCondo=[hideText];
+	 conditionsMatrixFloor=[hideText];
+
+}
+
+if (Id==='Floor') {
+ conditionsMatrixFloor=[showText];
+      conditionsMatrixStreet=[hideText];
+	 conditionsMatrixBuilding=[hideText];
+     conditionsMatrixCondo=[hideText];
+	 
+}
+}
+
+ 
+    var viewer = new Cesium.Viewer('cesiumContainer');
+	var scene = viewer.scene;
+	viewer.scene.globe.depthTestAgainstTerrain = true;
+	
+	// add Loading message
+var loadingDiv = document.getElementById('loadingOverlay') ;
+loadingDiv.style.display = "block" ;	
+
+var dataSourcesLoaded = true;
+var originalFunction = viewer.dataSourceDisplay.update;
+var loadingJson = false ;
+
+viewer.dataSourceDisplay.update = function(time) {		
+	dataSourcesLoaded = originalFunction.apply(viewer.dataSourceDisplay, [time]);
+
+	if ( !dataSourcesLoaded) {
+		loadingDiv.style.display = "block" ;
+	}
+	else {
+		loadingDiv.style.display = "none" ;		
+	}
+	return dataSourcesLoaded;
+};
+
+// add first tileset for condominiums
+	var tileset=scene.primitives.add (
+	new Cesium.Cesium3DTileset({
+	url: 'apps/papendrecht/condo/tileset.json'
+	})
+	);
+	
+	tileset.readyPromise.then(function(tileset) {
+    viewer.zoomTo(tileset, new Cesium.HeadingPitchRange(1.3, -0.5, tileset.boundingSphere.radius * 2.0));
+
+    // Override the default home button = reset to location of tileset instead of to world globe
+    viewer.homeButton.viewModel.command.beforeExecute.addEventListener(function (e) {
+	e.cancel = true;
+	viewer.zoomTo(tileset, new Cesium.HeadingPitchRange(1.5, -0.5, tileset.boundingSphere.radius * 2.0));
+
+});
+
+// styling first tileset
+
+var properties = tileset.properties; 
+if (Cesium.defined(properties) ) {
+tileset.style = new Cesium.Cesium3DTileStyle({
+color: {
+conditions: colorCondo
+}
+});
+}
+
+// show layers on off
+
+setStyleByBtn();
+
+tileset.style.show={conditions:
+conditionsMatrixCondo
+};
+}).otherwise(function(error) {
+    console.log(error);
+});
+
+var colorCondo=[	 
+["true", "rgb(254, 168, 119)"]		];
+
+// add second tileset for buildings
+
+	var tilesetBldg=scene.primitives.add (
+	new Cesium.Cesium3DTileset({
+	url: 'apps/papendrecht/bldg/tileset.json'
+	})
+	);
+	
+		// styling second tileset
+
+tilesetBldg.readyPromise.then(function(tilesetBldg) {
+var properties = tilesetBldg.properties; 
+tilesetBldg.style = new Cesium.Cesium3DTileStyle({
+color : {
+conditions: colorBuilding
+}
+	});
+	
+		// show layers on off
+
+						
+setStyleByBtn();
+tilesetBldg.style.show={conditions:
+conditionsMatrixBuilding
+};
+	
+
+}).otherwise(function(error) {
+    console.log(error);
+});
+	var colorBuilding=[	 
+
+["true", "rgb(255, 120, 0)"]		];
+
+
+
+
+// value tileset
+	var tilesetv=scene.primitives.add (
+	new Cesium.Cesium3DTileset({
+	url: 'apps/papendrecht/Value/tileset.json'
+	})
+	);
+	
+
+tilesetv.readyPromise.then(function(tilesetv) {
+		// show layers on off	
+var aaa;
+var prop = tilesetv.properties; 
+tilesetv.style = new Cesium.Cesium3DTileStyle
+<!-- tilesetv.style.show=false; -->
+
+valuationYear(valDate);
+
+
+}).otherwise(function(error) {
+    console.log(error);
+});
+
+
+// add common tileset
+	var tilesetcommon=scene.primitives.add (
+	new Cesium.Cesium3DTileset({
+	url: 'apps/papendrecht/common/tileset.json'
+	})
+	);
+	
+		// styling  tilesetcommon
+		
+		
+tilesetcommon.readyPromise.then(function(tilesetcommon) {
+		
+var properties = tilesetcommon.properties; 
+tilesetcommon.style = new Cesium.Cesium3DTileStyle
+tilesetcommon.style.show=false;
+
+}).otherwise(function(error) {
+    console.log(error);
+});
+
+
+// add street tileset
+	var tilesetstreet=scene.primitives.add (
+	new Cesium.Cesium3DTileset({
+	url: 'apps/papendrecht/Street/tileset.json'
+	})
+	);
+	
+	
+			// styling street tileset
+
+tilesetstreet.readyPromise.then(function(tilesetstreet) {
+var properties = tilesetstreet.properties; 
+tilesetstreet.style = new Cesium.Cesium3DTileStyle({
+color : {
+conditions: colorStreet
+}
+	});
+	
+			// show layers on off
+
+						
+setStyleByBtn();
+
+tilesetstreet.style.show={conditions:
+conditionsMatrixStreet
+};
+	
+
+}).otherwise(function(error) {
+    console.log(error);
+});
+	var colorStreet=[	 
+
+["true", "rgb(240, 100, 5)"]		];
+	
+	
+	
+// add floor tileset
+	var tilesetfloor=scene.primitives.add (
+	new Cesium.Cesium3DTileset({
+	url: 'apps/papendrecht/Floor/tileset.json'
+	})
+	);
+	
+// styling floor tileset
+
+tilesetfloor.readyPromise.then(function(tilesetfloor) {
+var properties = tilesetfloor.properties; 
+tilesetfloor.style = new Cesium.Cesium3DTileStyle({
+color : {
+conditions: colorFloor
+}
+	});
+
+			// show layers on off
+					
+setStyleByBtn();
+
+tilesetfloor.style.show={conditions:
+conditionsMatrixFloor
+};
+	
+
+}).otherwise(function(error) {
+    console.log(error);
+});
+	var colorFloor=[	 
+["true", "rgb(100, 100, 100)"]		];
+
+
+	var checkbox = document.getElementById('showCheckbox');
+checkbox.addEventListener('change', function() {
+
+    if (checkbox.checked) {
+
+        if (!viewer.dataSources.contains(tilesetcommon)) {
+
+			var properties = tilesetcommon.properties; 
+if (Cesium.defined(properties)) {
+tilesetcommon.style = new Cesium.Cesium3DTileStyle()
+
+tilesetcommon.style.color='color("gray")';
+tilesetcommon.show = true;
+					
+		   }
+		   else{};
+	}	   
+    } else {
+
+      		if (tilesetcommon.show = true) {
+		       tilesetcommon.show = false;
+		
+        }
+    }
+}, true);
+
+
+var Id;
+function ShowTheme(Id) {
+		 
+		 setStyleByBtn();
+tileset.style=new Cesium.Cesium3DTileStyle({
+  show: {
+		conditions: 
+		conditionsMatrixCondo
+  }
+  });
+
+  tilesetBldg.style=new Cesium.Cesium3DTileStyle({
+  show: {
+		conditions:
+		[conditionsMatrixBuilding]
+  }
+  });
+  
+  
+    tilesetfloor.style=new Cesium.Cesium3DTileStyle({
+  show: {
+		conditions:
+		[conditionsMatrixFloor]
+  }
+  });
+  
+      tilesetstreet.style=new Cesium.Cesium3DTileStyle({
+  show: {
+		conditions:
+		[conditionsMatrixStreet]
+  }
+  });
+  
+  
+ tileset.style.color={ conditions: colorCondo}
+ tilesetBldg.style.color={ conditions: colorBuilding}
+  tilesetstreet.style.color={ conditions: colorStreet}
+   tilesetfloor.style.color={ conditions: colorFloor}
+
+ 
+  }
+	
+   Sandcastle.addToolbarMenu([
+   
+    {
+    text : 'Street',
+    onselect : function() {
+	 Id='Street';
+	 ShowTheme(Id);
+	 newStyle ();
+    }
+},
+
+
+ {
+    text : 'Building',
+    onselect : function() {
+	 Id='Building';
+	 ShowTheme(Id);
+	 newStyle ();
+    }
+},
+
+{
+    text : 'Floor',
+    onselect : function() {
+	 Id='Floor';
+     ShowTheme(Id);
+	 newStyle ();
+    }
+}, 
+
+
+{
+    text : 'Condominium',
+    onselect : function() {
+	 Id='Condominium';
+     ShowTheme(Id);
+	 newStyle ();
+    }
+}
+
+
+
+], 'SelectUnit');
+
+
+function newStyle (){
+
+setStyleByBtn ();
+tileset.style=new Cesium.Cesium3DTileStyle({
+  show: {
+		conditions: 
+		conditionsMatrixCondo
+	
+  }
+  });
+  
+tileset.style.color={ conditions: colorCondo}
+
+
+tilesetBldg.style=new Cesium.Cesium3DTileStyle({
+  show: {
+		conditions: 
+		conditionsMatrixBuilding
+		}
+});
+
+tilesetBldg.style.color={ conditions: colorBuilding}
+
+
+tilesetstreet .style=new Cesium.Cesium3DTileStyle({
+  show: {
+		conditions: 
+		conditionsMatrixStreet
+		}
+});
+
+tilesetfloor.style=new Cesium.Cesium3DTileStyle({
+  show: {
+		conditions: 
+		conditionsMatrixFloor
+		}
+});
+
+
+tilesetfloor.style.color={ conditions: colorFloor}
+}
+
+var valDate='20200101';
+var adresj='';
+var propvalcondo='';
+var propvalbldg='';
+var propvalstr='';
+var propvalstrsq='';
+var propvalbldgsq='';
+var identificatiej='';
+var ident='';
+var snamej='';
+var prtype='';
+var fnamej='';
+var propvalflr='';
+var propvalflrsq='';
+var areaflr='';
+var Aninc_condo='';
+var Aninc_floor='';
+var Aninc_bldg='';
+var Aninc_street='';
+
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
+
+function valuationYear(valDate,callback) {
+
+  viewer.scene.primitives.remove(tilesetv);
+  tilesetv = viewer.scene.primitives.add(
+    new Cesium.Cesium3DTileset({
+     url: 'apps/papendrecht/Value/tileset.json'
+    })
+  );
+  
+ tilesetv.tileLoad.addEventListener(function(tile) {
+ var prop = tilesetv.properties; 
+tilesetv.style = new Cesium.Cesium3DTileStyle
+ tilesetv.style.show=false;
+var content = tile.content;
+var featuresLength = content.featuresLength;
+for (var i = 0; i < featuresLength; i++) {
+      var feature = content.getFeature(i);
+if (Id==='Condominium') {
+      var adres = feature.getProperty('Adres');
+	    if ((adres===adresj) &&  (feature.getProperty('Peildatum')===valDate) )  {
+	  aaa=adres;
+	 propvalcondo=feature.getProperty('WOZ-waarde-condo');
+	 Aninc_condo=feature.getProperty('Annual_increase');
+}
+}
+
+else if (Id==='Floor') {
+ var fname = feature.getProperty('Floor-id');
+	if ((fname===fnamej) &&  (feature.getProperty('Peildatum')===valDate) )  {
+	 propvalflr=feature.getProperty('WOZ-waarde-floor-mean');
+	 propvalflrsq=feature.getProperty('WOZ-waarde-persqm-floor');
+     Aninc_floor=feature.getProperty('Annual_increase_floor');
+	 areaflr= feature.getProperty('Oppervlakte.mean-floor');
+}
+}
+
+else if (Id==='Building') {
+ var ident = feature.getProperty('pandidentificatie');
+	if ((ident===identificatiej) &&  (feature.getProperty('Peildatum')===valDate) )  {
+	 propvalbldg=feature.getProperty('WOZ-waarde-mean-bldg');
+	 propvalbldgsq=feature.getProperty('WOZ-waarde-persqm-bldg');
+	  prtype=feature.getProperty('bldtype');
+	 Aninc_bldg=feature.getProperty('Annual_increase_bldg');
+}}
+
+
+else if (Id==='Street') {
+ var sname = feature.getProperty('StreetName');
+	if ((sname===snamej) &&  (feature.getProperty('Peildatum')===valDate) )  {
+	 propvalstr=feature.getProperty('WOZ-waarde-mean-street');
+	 propvalstrsq=feature.getProperty('WOZ-waarde-persqm-street');
+	 Aninc_street=feature.getProperty('Annual_increase_street');
+}
+}
+
+
+ callback();
+}})};
+
+  Sandcastle.addToolbarMenu([
+{
+    text : '2020',
+    onselect : function() {
+	 valDate='20200101';
+    }
+
+}, 
+
+{
+  
+   text : '2019',
+    onselect : function() {
+		 valDate='20190101';
+    }
+	
+},  {
+
+    text : '2018',
+    onselect : function() {
+	 valDate='20180101';
+    }
+	},  {
+ 
+    text : '2017',
+    onselect : function() {
+	valDate='20170101'
+    }
+},  
+
+
+{
+    text : '2016',
+    onselect : function() {
+	valDate='20160101'
+    }
+},
+
+
+{
+    text : '2015',
+    onselect : function() {
+	valDate='20150101'
+    }
+},
+
+ {
+    text : '2014',
+    onselect : function() {
+	valDate='20140101'
+	}
+}
+
+], 'SelectVal');
+
+var handler = new Cesium.ScreenSpaceEventHandler(viewer.canvas);
+
+// When a feature is left clicked, print its class name and properties
+handler.setInputAction(function(movement) {
+    const feature = viewer.scene.pick(movement.position);
+	    if (!Cesium.defined(feature)) {
+        return;
+    }
+    const propertyNames = feature.getPropertyNames();
+    const length = propertyNames.length;
+	     for (var i = 0; i < length; ++i) {
+        const propertyName = propertyNames[i];
+        const value = feature.getProperty(propertyName);
+    }
+}, Cesium.ScreenSpaceEventType.RIGHT_CLICK);
+
+
+// HTML overlay for showing feature name on mouseover
+const nameOverlay = document.createElement('div');
+viewer.container.appendChild(nameOverlay);
+nameOverlay.className = 'backdrop';
+nameOverlay.style.display = 'none';
+nameOverlay.style.position = 'absolute';
+nameOverlay.style.bottom = '0';
+nameOverlay.style.left = '0';
+nameOverlay.style['pointer-events'] = 'none';
+nameOverlay.style.padding = '50x';
+nameOverlay.style.backgroundColor = 'black';
+
+const selected = {
+    feature: undefined,
+    originalColor: new Cesium.Color()
+};
+
+const selectedEntity = new Cesium.Entity();
+
+const clickHandler = viewer.screenSpaceEventHandler.getInputAction(Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+const highlighted = {
+    feature : undefined,
+    originalColor : new Cesium.Color()
+};
+
+viewer.screenSpaceEventHandler.setInputAction(function onMouseMove(movement) {
+    // If a feature was previously highlighted, undo the highlight
+    if (Cesium.defined(highlighted.feature)) {
+        highlighted.feature.color = highlighted.originalColor;
+        highlighted.feature = undefined;
+    }
+    // Pick a new feature
+    const pickedFeature = viewer.scene.pick(movement.endPosition);
+    if (!Cesium.defined(pickedFeature)) {
+        nameOverlay.style.display = 'none';
+        return;
+    }
+    // A feature was picked, so show it's overlay content
+	   	   
+    nameOverlay.style.display = 'block';
+    nameOverlay.style.bottom = viewer.canvas.clientHeight - movement.endPosition.y + 'px';
+    nameOverlay.style.left = movement.endPosition.x + 'px';
+	   nameOverlay.textContent =undefined;
+if (Id==='Street'){
+   nameOverlay.textContent =pickedFeature.getProperty('StreetName');
+       
+   }
+  else if (Id==='Floor'){
+    nameOverlay.textContent=pickedFeature.getProperty('FloorNumber');
+	
+   }
+   else if (Id==='Condominium'){
+     nameOverlay.textContent=pickedFeature.getProperty('huisnummer');
+
+   }
+       else if (Id==='Building'){
+  nameOverlay.textContent=pickedFeature.getProperty('identificatie');
+
+   }
+   
+   
+    <!-- if (!Cesium.defined(name)) { -->
+        <!-- name = pickedFeature.getProperty('Adres'); -->
+	
+    <!-- } -->
+<!--     nameOverlay.textContent = name; -->
+	
+	
+    // Highlight the feature if it's not already selected.
+    if (pickedFeature !== selected.feature) {
+        highlighted.feature = pickedFeature;
+        Cesium.Color.clone(pickedFeature.color, highlighted.originalColor);
+        pickedFeature.color = Cesium.Color.TURQUOISE;
+    }
+	
+	
+    }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+	
+	<!-- function ff() { -->
+	 <!-- const pickedFeature = viewer.scene.pick(movement.endPosition); -->
+	<!-- if (Id==='Street'){ -->
+   <!-- let name=pickedFeature.getProperty('StreetName'); -->
+   <!-- } -->
+  <!-- else if (Id==='Floor'){ -->
+    <!-- let name=pickedFeature.getProperty('FloorNumber'); -->
+   <!-- } -->
+   <!-- else if (Id==='Condo'){ -->
+   <!-- let  name=pickedFeature.getProperty('huisnummer'); -->
+   <!-- } -->
+       <!-- else if (Id==='Building'){ -->
+   <!-- let name=pickedFeature.getProperty('identificatie'); -->
+   <!-- } -->
+	
+	
+	<!-- }; -->
+	
+	
+    // Color a feature on selection and show metadata in the InfoBox.
+    viewer.screenSpaceEventHandler.setInputAction(function onLeftClick(movement) {
+        // If a feature was previously selected, undo the highlight
+        if (Cesium.defined(selected.feature)) {
+            selected.feature.color = selected.originalColor;
+            selected.feature = undefined;
+        }
+        // Pick a new feature
+        const pickedFeature = viewer.scene.pick(movement.position);
+        if (!Cesium.defined(pickedFeature)) {
+            clickHandler(movement);
+            return;
+        }
+        // Select the feature if it's not already selected
+        if (selected.feature === pickedFeature) {
+            return;
+        }
+        selected.feature = pickedFeature;
+        // Save the selected feature's original color
+        if (pickedFeature === highlighted.feature) {
+            Cesium.Color.clone(highlighted.originalColor, selected.originalColor);
+            highlighted.feature = undefined;
+        } else {
+            Cesium.Color.clone(pickedFeature.color, selected.originalColor);
+        }
+        // Highlight newly selected feature
+        pickedFeature.color = Cesium.Color.RED;
+		
+function condowindow () {
+
+		valuationYear(valDate, function () {
+		
+		        // Set feature infobox description
+
+				
+var featureName = pickedFeature.getProperty('postcode');
+adresj=pickedFeature.getProperty('adresJoin');
+        selectedEntity.name = featureName;
+		selectedEntity.description = 'Loading <div class="cesium-infoBox-loading"></div>';
+        viewer.selectedEntity = selectedEntity;
+        selectedEntity.description = '<table class="cesium-infoBox-defaultTable"><tbody>' +
+                                     '<tr><th>Condominium Id</th><td>' + pickedFeature.getProperty('identificatie') + '</td></tr>' +
+									  '<tr><th>Purpose of use</th><td>' + pickedFeature.getProperty('gebruiksdoel') + '</td></tr>' +
+									   '<tr><th>Status</th><td>' + pickedFeature.getProperty('status') + '</td></tr>' +
+									   '<tr><th>Public Space</th><td>' + pickedFeature.getProperty('openbare_ruimte') + '</td></tr>' +
+									   '<tr><th>Building ID</th><td>' + pickedFeature.getProperty('pandidentificatie') + '</td></tr>' +
+									   '<tr><th>Year of construction</th><td>' + pickedFeature.getProperty('bouwjaar') + '</td></tr>' +
+									   '<tr><th>Post code</th><td>' + pickedFeature.getProperty('postcode') + '</td></tr>' +
+									 
+                                     '<tr><th>Floor Number</th><td>' + pickedFeature.getProperty('FloorNumber') + '</td></tr>' +
+									 '<tr><th>House Number</th><td>' + pickedFeature.getProperty('huisnummer') + '</td></tr>' +
+                                     '<tr><th> Area (m&sup2)</th><td>' + pickedFeature.getProperty('oppervlakte') + '</td></tr>' +
+                                     '<tr><th> Value </th><td>' + propvalcondo + ' euro </td></tr>' +
+									 '<tr><th> Annual increase in value </th><td>' + Aninc_condo + ' % </td></tr>' +
+								     '</tbody></table>';
+
+							
+});	
+}
+
+function buildingwindow () {
+
+		valuationYear(valDate, function () {
+		
+		        // Set feature infobox description
+
+var featureName = pickedFeature.getProperty('identificatie');
+identificatiej=pickedFeature.getProperty('identificatie');
+
+        selectedEntity.name = featureName;
+
+        selectedEntity.description = 'Loading <div class="cesium-infoBox-loading"></div>';
+        viewer.selectedEntity = selectedEntity;
+		
+		if (prtype==='singlefamily') {
+		
+        selectedEntity.description = '<table class="cesium-infoBox-defaultTable"><tbody>' +
+                                     '<tr><th>Building ID</th><td>' + pickedFeature.getProperty('identificatie') + '</td></tr>' +
+									  '<tr><th>Purpose of use</th><td>' + pickedFeature.getProperty('gebruiksdoel') + '</td></tr>' +
+									   '<tr><th>Status</th><td>' + pickedFeature.getProperty('status') + '</td></tr>' +
+									   '<tr><th>Year of construction</th><td>' + pickedFeature.getProperty('bouwjaar') + '</td></tr>' +
+									   '<tr><th>Min area (m&sup2)</th><td>' + pickedFeature.getProperty('oppervlakte_min') + '</td></tr>' +
+                                     '<tr><th> Max area (m&sup2)</th><td>' + pickedFeature.getProperty('oppervlakte_max') + '</td></tr>' +
+									 '<tr><th> Use type </th><td>' + 'Single family' + '</td></tr>' +
+                                     '<tr><th> Value  </th><td>' + propvalbldg + ' euro </td></tr>' +
+									  '<tr><th> Value (per m&sup2) </th><td>' + propvalbldgsq + ' euro </td></tr>' +
+									   '<tr><th> Annual increase in value (%) </th><td>' + Aninc_bldg + ' % </td></tr>' +
+                                    '</tbody></table>';
+						
+						}
+						
+						else{        selectedEntity.description = '<table class="cesium-infoBox-defaultTable"><tbody>' +
+                                     '<tr><th>Building ID</th><td>' + pickedFeature.getProperty('identificatie') + '</td></tr>' +
+									  '<tr><th>Purpose of use</th><td>' + pickedFeature.getProperty('gebruiksdoel') + '</td></tr>' +
+									   '<tr><th>Status</th><td>' + pickedFeature.getProperty('status') + '</td></tr>' +
+									   '<tr><th>Year of construction</th><td>' + pickedFeature.getProperty('bouwjaar') + '</td></tr>' +
+									   '<tr><th>Min area (m&sup2)</th><td>' + pickedFeature.getProperty('oppervlakte_min') + '</td></tr>' +
+                                     '<tr><th> Max area (m&sup2)</th><td>' + pickedFeature.getProperty('oppervlakte_max') + '</td></tr>' +
+									  '<tr><th> Use type </th><td>' + 'Multi family' + '</td></tr>' +
+									 '<tr><th> Number of condominiums</th><td>' + pickedFeature.getProperty('aantal_verblijfsobjecten') + '</td></tr>' +
+                                     '<tr><th> Value (mean) </th><td>' + propvalbldg + ' euro </td></tr>' +
+									  '<tr><th> Value (per m&sup2) </th><td>' + propvalbldgsq + ' euro </td></tr>' +
+									   '<tr><th> Annual increase in value (%) </th><td>' + Aninc_bldg + ' % </td></tr>' +
+                                    '</tbody></table>';}
+});	
+}
+
+function floorwindow () {
+
+		valuationYear(valDate, function () {
+		
+// Set feature infobox description
+
+var featureName = pickedFeature.getProperty('Floor-id');
+fnamej=pickedFeature.getProperty('Floor-id');
+
+        selectedEntity.name = featureName;
+        selectedEntity.description = 'Loading <div class="cesium-infoBox-loading"></div>';
+        viewer.selectedEntity = selectedEntity;
+        selectedEntity.description = '<table class="cesium-infoBox-defaultTable"><tbody>' +
+                                     
+                          
+									'<tr><th> Street Name </th><td>' + pickedFeature.getProperty('openbare_ruimte') + '</td></tr>' +
+									'<tr><th> Post code </th><td>'  + pickedFeature.getProperty('postcode') + '</td></tr>' + 
+									'<tr><th> Floor number </th><td>' + pickedFeature.getProperty('FloorNumber')+ '</td></tr>' + 
+									'<tr><th> Mean area (m&sup2) </th><td>'   + areaflr +  '</td></tr>' + 
+									'<tr><th> Value (mean) </th><td>' + propvalflr + ' euro </td></tr>' +
+									'<tr><th> Value (per m&sup2) </th><td>' + propvalflrsq + ' euro </td></tr>' +
+									 '<tr><th> Annual increase in value </th><td>' + Aninc_floor + ' % </td></tr>' +
+                                    '</tbody></table>';
+						
+});	
+}
+
+function streetwindow () {
+
+		valuationYear(valDate, function () {
+		
+		        // Set feature infobox description
+
+var featureName = pickedFeature.getProperty('StreetName');
+snamej=pickedFeature.getProperty('StreetName');
+
+        selectedEntity.name = featureName;
+        selectedEntity.description = 'Loading <div class="cesium-infoBox-loading"></div>';
+        viewer.selectedEntity = selectedEntity;
+        selectedEntity.description = '<table class="cesium-infoBox-defaultTable"><tbody>' +
+                                     '<tr><th> Street Name </th><td>' + pickedFeature.getProperty('openbare_ruimte') + '</td></tr>' +
+									  '<tr><th> Construction year (min) </th><td>' + pickedFeature.getProperty('bouwjaar.min') + '</td></tr>' +
+									  '<tr><th> Construction year (max) </th><td>' + pickedFeature.getProperty('bouwjaar.max') + '</td></tr>' +
+                                     '<tr><th> Value (mean) </th><td>' + propvalstr + ' euro </td></tr>' +
+									  '<tr><th> Value (per m&sup2) </th><td>' + propvalstrsq + ' euro </td></tr>' +
+									   '<tr><th> Annual increase in value</th><td>' + Aninc_street + ' % </td></tr>' +
+                                    '</tbody></table>';
+						
+});	
+}
+	
+	if (pickedFeature.tileset===tileset) {
+	condowindow ();
+}
+	else if (pickedFeature.tileset===tilesetBldg) {
+
+buildingwindow();
+		}	
+		
+			else if (pickedFeature.tileset===tilesetfloor) {
+
+floorwindow();
+		}	
+		
+	else if (pickedFeature.tileset===tilesetstreet) {
+
+streetwindow();
+		}	
+		
+		else  	{ }
+		
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+//Sandcastle_End
+    Sandcastle.finishedLoading();
+}
+
+if (typeof Cesium !== "undefined") {
+    startup(Cesium);
+} else if (typeof require === "function") {
+    require(["Cesium"], startup);
+}
+		
+ </script>
+ </body>
+</html>
